@@ -1,12 +1,44 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
+import { icons } from '../../../constants'
+import { checkImg } from '../../../utils'
 
 import styles from './company.style'
 
-const Company = () => {
+const Company = ({ companyLogo, jobTitle, companyName, location }) => {
   return (
-    <View>
-      <Text>Company</Text>
+    <View style={styles.container}>
+      <View style={styles.logoBox}>
+<Image
+          source={ { uri: checkImg(companyLogo) 
+          ? companyLogo 
+          : 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg' } }
+          style={styles.logoImage}
+/>
+      </View>
+
+      <View style={ styles.jobTitleBox }>
+        <Text style={styles.jobTitle}>
+          {jobTitle}
+        </Text>
+      </View>
+
+
+      <View style={ styles.companyInfoBox }>
+        <Text style={ styles.companyName }>
+          { companyName } /
+        </Text>
+        <View style={ styles.locationBox }>
+          <Image
+            source={icons.location}
+            resizeMode="contain"
+            style={ styles.locationImage }
+          />
+          <Text style={ styles.locationName }>
+            { location }
+          </Text>
+        </View>
+      </View>
     </View>
   )
 }
