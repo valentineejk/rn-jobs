@@ -12,6 +12,7 @@ import Nearbyjobs from '../components/home/nearby/Nearbyjobs';
 const Home = () => {
 
     const router = useRouter();
+    const [searchText, setSearchText] = useState("")
 
     return (
         <SafeAreaView style={ { flex: 1, backgroundColor: COLORS.lightWhite, }} >
@@ -34,7 +35,14 @@ const Home = () => {
 
             <ScrollView showsVerticalScrollIndicator={false} >
 <View style={{flex: 1, padding: SIZES.medium}}>
-                    <Welcome />
+                    <Welcome
+                    searchText={searchText}
+                    setSearchText={ setSearchText }
+                    handleClick={()=>{
+                        router.push(`/search/${searchText}`)
+                    }}
+
+                    />
                     <Popularjobs />
                     <Nearbyjobs />
                     </View>
@@ -43,15 +51,7 @@ const Home = () => {
     );
 };
 
-// define your styles
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         backgroundColor: '#2c3e50',
-//     },
-// });
+
 
 //make this component available to the app
 export default Home;

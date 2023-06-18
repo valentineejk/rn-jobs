@@ -6,17 +6,21 @@ import styles from './popularjobs.style'
 import PopularJobCard from '../../common/cards/popular/PopularJobCard'
 import useFetch from '../../../hook/useFetch'
 
-const Popularjobs = () => {
+const Popularjobs = ({item}) => {
 
   const router = useRouter();
+
+  const [selectedJob, setSelectedJob] = useState()
   const { data, error, refresh, isLoading } = useFetch('search', {
     query: 'React Native Developer',
     num_pages: 1,
   });
 
-  console.log('====================================');
-  console.log(data);
-  console.log('====================================');
+  const handleCardPress = () => {
+    router.push(`/job-details/${item.job_id}`)
+    setSelectedJob(item.job_id )
+  }
+
 
   return (
     <View style={ styles.container }>
